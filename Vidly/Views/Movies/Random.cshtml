@@ -1,9 +1,43 @@
-﻿@model Vidly.Models.Movie
+﻿
+@model  Vidly.ViewModels.RandomMovieViewModel
 @* We have to include model as abve to interact with models and controller*@
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@* Dynamic Add Classes in Ui *@
+@{ 
+    var className = Model.customers.Count > 2 ? "popular" : null;
+}
 
-<h2>@Model.Name</h2>
+
+<h2 class="@className">@Model.movie.Name </h2>
+
+@if (Model.customers.Count==0)
+{
+    <label> No Customers Found</label>
+}
+else
+{
+    <ul>
+        @foreach (var customer in @Model.customers)
+        {
+            <li> @customer.Name</li>
+        }
+    </ul>
+}
+
+
+@*@* Start Using View View Data *@
+@*<p>View Data</p>*@
+@*<h2> @(((Movie)ViewData["Movie"]).Name)</h2>*@
+@* End  View Data *@
+
+@* Start Using View View Bag *@
+
+@*<p>View Data</p>*@
+@*@ViewBag.Mov*@
+@* End  View Data *@
+
+@*<p>@Model.Name </p>*@
 
